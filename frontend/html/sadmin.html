@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Table</title>
+<style>
+  
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    .addnew {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .addnew a {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block; /* Ensure the link is displayed as a block element */
+    }
+
+    .addnew a:hover {
+        background-color: #45a049;
+    }
+
+    .addnew a span {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<h2>Student Table</h2>
+
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Department_Name</th>
+      <th>Total_Credit</th>
+    </tr>
+  </thead>
+  <tbody id="studentBody">
+    
+  </tbody>
+</table>
+<script src="../js/sadmin.js"></script>
+<div class="addnew">
+    <a href="addstudent.html"><span>Add_student</span></a>
+</div>
+</body>
+</html>

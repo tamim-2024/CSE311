@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Management System - Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+     body {
+      background-image: url('school.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+.container {
+position: relative;
+  margin-bottom: 50%;
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 20px); 
+  box-sizing: border-box;
+}
+.card:hover{
+  background: #19B3D3;;
+}
+
+.card h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+
+
+
+  
+  
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Teacher</h2>
+      <p>Total: <span id="teacherCount"></span></p>
+      <p>Active: <span id="teacheractive"></span></p>
+    </div>
+    <div class="card">
+      <h2> Student</h2>
+      <p >Total: <span id="studentcount"></span> </p>
+      <p >Active:  <span id="studentactive"></span></p>
+    </div>
+    <div class="card">
+      <h2> Course</h2>
+      <p >Total: <span id="course"></span></p>
+      <p >Active: <span id="courseactive"></span></p>
+    </div>
+    <div class="card">
+      <h2> class</h2>
+      <p >Total: <span id="class"></span></p>
+      <p >Active: <span id="classactive"></span></p>
+    </div>
+
+  </div>
+  <script src="../js/total_teacher.js"></script>
+  <script src="../js/active_teacher.js"></script>
+  <script src="../js/total_student.js"> </script>
+  <script src="../js/student-active.js"></script>
+  <script src="../js/total-course.js"></script>
+  <script src="../js/total_class.js"> </script>
+  
+</body>
+</html>

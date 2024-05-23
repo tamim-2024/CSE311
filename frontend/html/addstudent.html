@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Registration</title>
+  <style>
+    /* body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form {
+      margin-bottom: 20px;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .form input[type="text"],
+    .form input[type="number"],
+    .form input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: green;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form button:hover {
+      background-color: #0056b3;
+    } */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background:#f4f4f4 ;
+      display: flex;
+      font-family: sans-serif;
+    }
+    body {
+      background-image: url('../images/school.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      top: 50%;
+      left: 50%;
+      margin: auto;
+      width: 400px ;
+      background-color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container form {
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      border-color: #ccc;
+      border-radius: 3px;
+      box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    .container form h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: black;
+    }
+    .form input[type="text"],
+    .form input[type="number"],
+    .form input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .container form .form-control {
+      width: 100%;
+      height: 40px;
+      background: #ccc;
+      border-radius: 3px; 
+      border: 1px solid #fff;
+      padding: 10px;
+    }
+    .btn {
+      text-align: center;
+      width: 100%;
+      height: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color:green;
+      color: #fff;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .container form .last {
+      text-align: center;
+
+    }
+    .container form .last a{
+      text-align: center;
+      cursor: pointer;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="registrationForm" action="">
+      <h1>Student Registration Form</h1>
+      <div class="form">
+        <label for="ID">ID:</label> 
+        <input id="ID" type="text" class="form-control" required> 
+      </div><br>
+      <div class="form">
+        <label for="Name">Name:</label> 
+        <input id="Name" type="text" class="form-control" required> 
+      </div><br>
+      <div class="form">
+        <label for="Department_Name">Department Name:</label> 
+        <input id="Department_Name" type="text" class="form-control" required> 
+      </div><br>
+      <div class="form">
+        <label for="Total_Credit">Total Credit:</label> 
+        <input id="Total_Credit" type="number" class="form-control" required> 
+      </div><br>
+      <div class="form">
+        <label for="Password">Password:</label> 
+        <input id="Password" type="password" class="form-control" required> 
+      </div><br>
+      <div>
+        <button type="button" onclick="addstudent()">Register</button>
+      </div>
+      <br>
+    </form>
+  </div>
+  
+  <script src="../js/addstudent.js"></script>
+</body>
+</html>

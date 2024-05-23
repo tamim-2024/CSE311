@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>School Management System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('../images/school.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    .logo {
+      height: 50px;
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-right: 50px;
+    }
+
+    /* main {
+      padding: 20px 0;
+    } */
+
+    main {
+      top: 50%;
+      left: 50;
+      margin: auto;
+      margin-top: 15%;
+      
+
+
+      /* height: 100%;
+      width: 100%; */
+      /* background-color: #fff; */
+      font-family: Arial, Helvetica, sans-serif;
+
+
+    }
+    .login-option {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: calc(25% - 20px);
+      box-sizing: border-box;
+    }
+    .login-option:hover{
+      background-color: aqua;
+    }
+
+    .login-section {
+      top: 50%;
+      left: 50;
+      margin: auto;
+      margin-top: 15%;
+
+
+      text-align: center;
+    }
+
+    .login-section h2 {
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 5px;
+      width: calc(25% - 20px);
+      box-sizing: border-box;
+      background-color: aquamarine;
+      margin-bottom: 20px;
+      
+    }
+
+    .login-options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .login-option {
+      margin: 0 10px;
+    }
+
+    .login-option a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+
+
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <img src="../images/logo.png" alt="School Logo" class="logo">
+      <h1>School Management System</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="login-section">
+      <h2>Login   As</h2>
+      <div class="login-options">
+        <div class="login-option">
+
+
+          <a href="login.html"><img src="../images/admin.png" alt="School Logo" class="logo"><br><br>Admin</a>
+        </div>
+        <div class="login-option">
+          
+          <a href="teacher_login.html"><img src="../images/teacher.jpg" alt="School Logo" class="logo"><br><br>Teacher</a>
+        </div>
+        <div class="login-option">
+          
+          <a href="student_login.html"><img src="../images/student.jpg" alt="School Logo" class="logo"><br><br>Student</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+  <br><br><br>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 School Management System. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

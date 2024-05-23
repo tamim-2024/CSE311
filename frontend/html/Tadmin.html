@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Table</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .addnew {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .addnew a {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block; /* Ensure the link is displayed as a block element */
+    }
+
+    .addnew a:hover {
+        background-color: #45a049;
+    }
+
+    .addnew a span {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<h2>Teacher Table</h2>
+<table id="teacherTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department_Name</th>
+            <th>Salary</th>
+            <th>Join Date</th>
+        </tr>
+    </thead>
+    <tbody id="teacherBody">
+       
+    </tbody>
+</table>
+
+<script src="../js/tadmin.js"></script>
+
+<div class="addnew">
+    <a href="addteacher.html"><span>Add_teacher</span></a>
+</div>
+</body>
+</html>

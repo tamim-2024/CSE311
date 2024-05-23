@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-image: url('school.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .paper {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .paper:hover{
+
+      background-color: aqua;
+    }
+
+    .title {
+      font-size: 1.25rem;
+    }
+
+    .data {
+      font-size: calc(1.3rem + .6vw);
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="grid">
+      <div class="paper">
+        
+        <p class="title">Class Students</p>
+        <p class="data" id="studentsCount">0</p>
+      </div>
+      <div class="paper">
+        <p class="title">Total Lessons</p>
+        <p class="data" id="lessonsCount">0</p>
+      </div>
+      <div class="paper">
+        <p class="title">Tests Taken</p>
+        <p class="data" id="testsCount">0</p>
+      </div>
+      <div class="paper">
+        <p class="title">Total section</p>
+        <p class="data" id="hoursCount">0</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
