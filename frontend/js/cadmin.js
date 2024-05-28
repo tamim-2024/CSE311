@@ -13,10 +13,10 @@ fetch('http://localhost:3000/test-post_2', {
     data.result.forEach(course => { 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${course.ID}</td>
-            <td>${course.Title}</td>
-            <td>${course.Department_Name}</td> 
-            <td>${course.Credits}</td> 
+            <td>${course.course_id}</td>
+            <td>${course.title}</td>
+            <td>${course.dept_name}</td> 
+            <td>${course.credits}</td> 
         `;
         tableBody.appendChild(row);
     });

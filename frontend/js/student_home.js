@@ -24,6 +24,7 @@ fetch('http://localhost:3000/takes', {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${grade.ID}</td>
+                <td>${grade.name}</td>
                 <td>${grade.course_id}</td>
                 <td>${grade.sec_id}</td> 
                 <td>${grade.semester}</td>

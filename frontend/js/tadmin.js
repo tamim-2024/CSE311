@@ -38,13 +38,13 @@
       const tableBody = document.getElementById("teacherBody");
       data.result.forEach(teacher => { 
           const row = document.createElement('tr');
-          const joinDate = new Date(teacher.Join_Date);
+          const joinDate = new Date(teacher.join_date);
         const formattedJoinDate = joinDate.toDateString();
           row.innerHTML = `
               <td>${teacher.ID}</td>
-              <td>${teacher.Name}</td>
-              <td>${teacher.Department_Name}</td>
-              <td>$${teacher.Salary}</td>
+              <td>${teacher.name}</td>
+              <td>${teacher.dept_name}</td>
+              <td>$${teacher.salary}</td>
               <td>${formattedJoinDate}</td>
           `;
           tableBody.appendChild(row);

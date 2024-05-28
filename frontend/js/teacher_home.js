@@ -10,29 +10,30 @@ function logout(){
 }
 
 fetch('http://localhost:3000/teaches', { 
-        method: 'post',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ID:logedinteacher.ID}) 
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        const tableBody = document.getElementById("teachesBody"); 
-        data.result.forEach(grade => { 
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${grade.ID}</td>
-                <td>${grade.course_id}</td>
-                <td>${grade.sec_id}</td> 
-                <td>${grade.semester}</td>
-                <td>${grade.year}</td> 
-            `;
-            tableBody.appendChild(row);
-        });
-    })
-    .catch(error => console.error('Error fetching data:', error));
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ID: logedinteacher.ID }) 
+})
+.then(res => res.json())
+.then(data => {
+    console.log(data);
+    const tableBody = document.getElementById("teachesBody"); 
+    data.result.forEach(teach => { 
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${teach.ID}</td>
+            <td>${teach.name}</td> 
+            <td>${teach.course_id}</td>
+            <td>${teach.sec_id}</td>
+            <td>${teach.semester}</td>
+            <td>${teach.year}</td> 
+        `;
+        tableBody.appendChild(row);
+    });
+})
+.catch(error => console.error('Error fetching data:', error));
 
-    console.log("after fetch");
+console.log("after fetch");

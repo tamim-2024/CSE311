@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Department Table</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .addnew {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .addnew a {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block; 
+    }
+
+    .addnew a:hover {
+        background-color: #45a049;
+    }
+
+    .addnew a span {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<h2>Department Table</h2>
+<table id="departmentTable">
+    <thead>
+        <tr>
+            <th>Department Name</th>
+            <th>Building</th>
+            <th>Budget</th>
+        </tr>
+    </thead>
+    <tbody id="departmentBody">
+       
+    </tbody>
+</table>
+
+
+
+<script src="../js/dadmin.js"></script>
+
+<script>
+    fetch('http://localhost:3000/test-post_4', { 
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}) 
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        const tableBody = document.getElementById("departmentBody"); 
+        data.result.forEach(department => { 
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${department.dept_name}</td>
+                <td>${department.building}</td>
+                <td>${department.budget}</td> 
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+    console.log("after fetch");
+</script>
+
+</body>
+</html>

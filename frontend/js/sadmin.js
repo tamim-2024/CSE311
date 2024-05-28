@@ -14,9 +14,9 @@ fetch('http://localhost:3000/test-post_1', {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${student.ID}</td>
-            <td>${student.Name}</td>
-            <td>${student.Department_Name}</td> 
-            <td>${student.Total_Credit}</td> 
+            <td>${student.name}</td>
+            <td>${student.dept_name}</td> 
+            <td>${student.tot_credit}</td> 
         `;
         tableBody.appendChild(row);
     });

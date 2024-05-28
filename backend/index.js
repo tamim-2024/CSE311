@@ -131,7 +131,7 @@ app.post('/class_count', (req, res) => {
   });
 });
 app.post('/course_count', (req, res) => {
-  connection.query('SELECT COUNT(*) AS total FROM courses', function (err, result) {
+  connection.query('SELECT COUNT(*) AS total FROM course', function (err, result) {
     if (err) {
       res.json({
         error: err,
@@ -182,7 +182,7 @@ app.post('/user_check', function (req, res) {
   const password = req.body.password;
   console.log(username,password);
 
-  connection.query(`SELECT * FROM user WHERE id='${username}' `, function (err, result) {
+  connection.query(`SELECT * FROM user WHERE email='${username}' `, function (err, result) {
     if (err) {
       res.json({
         error: err,
@@ -253,26 +253,22 @@ app.post('/teaches', function (req, res) {
   console.log(req.body);
   console.log(req.body.ID);
 
-  connection.query(`SELECT * FROM teaches where ID='${req.body.ID}'`, function (err, result) {
+  connection.query('SELECT teaches.*, teacher.name FROM teaches INNER JOIN teacher ON teaches.ID = teacher.ID WHERE teaches.ID = ?', [req.body.ID], function (err, result) {
     console.log(result);
     if (err) {
-      res.json({
-        error: err,
-      })
-      
+      res.status(500).json({ error: err });
     } else {
-      res.json({
-        result: result,
-      })
+      res.status(200).json({ result: result });
     }
     console.log(result);
   });
 });
+
 app.post('/takes', function (req, res) {
   console.log(req.body);
   console.log(req.body.ID);
 
-  connection.query(`SELECT * FROM takes where ID='${req.body.ID}'`, function (err, result) {
+  connection.query('SELECT takes.*, student.name FROM takes INNER JOIN student ON takes.ID = student.ID where student.ID =? ',[req.body.ID], function (err, result) {
     console.log(result);
     if (err) {
       res.json({
@@ -368,7 +364,7 @@ app.post('/student_check', function (req, res) {
 // });
 app.post('/test-post', function (req, res) {
   console.log(req.body);
-  connection.query(`SELECT ID, Name, Department_Name, Salary, Join_Date FROM teacher`,
+  connection.query(`SELECT ID, name, dept_name, salary,join_date FROM teacher`,
     function (err, result) {
       console.log(result);
       if (err) {
@@ -406,7 +402,7 @@ app.post('/test-post_1', function (req, res) {
 });
 app.post('/test-post_2', function (req, res) {
   console.log(req.body);
-  connection.query(`select * from courses`,
+  connection.query(`select * from course`,
     function (err, result) {
       console.log(result);
       if (err) {
@@ -437,6 +433,21 @@ app.post('/test-post_3', function (req, res) {
         res.json({
           result: result,
         })
+      }
+      console.log(result);
+    }
+  );
+});
+app.post('/test-post_4', function (req, res) {
+  console.log(req.body);
+  
+  connection.query(`select * from department`,
+    function (err, result) {
+      console.log(result);
+      if (err) {
+        res.status(500).json({ error: err });
+      } else {
+        res.status(200).json({ result: result });
       }
       console.log(result);
     }
@@ -503,7 +514,7 @@ app.post('/add_teacher', function (req, res) {
     Password: req.body.Password
   };
 
-  connection.query(`INSERT INTO teacher (ID, Name, Department_Name, Salary, Join_Date, Password) VALUES ('${teacher.ID}', '${teacher.Name}', '${teacher.Department_Name}', '${teacher.Salary}', '${teacher.Join_Date}', '${teacher.Password}');`,
+  connection.query(`INSERT INTO teacher (ID, name, dept_name, salary, join_Date, password) VALUES ('${teacher.ID}', '${teacher.Name}', '${teacher.Department_Name}', '${teacher.Salary}', '${teacher.Join_Date}', '${teacher.Password}');`,
     function (err, result) {
       if (err) {
         res.json({
@@ -551,7 +562,7 @@ app.post('/add_student', function (req, res) {
     Password: req.body.Password 
   };
 
-  connection.query(`INSERT INTO student (ID, Name, Department_Name, Total_Credit, Password) VALUES ('${student.ID}', '${student.Name}', '${student.Department_Name}', '${student.Total_Credit}', '${student.Password}');`,
+  connection.query(`INSERT INTO student (ID, name, dept_name, tot_credit, password) VALUES ('${student.ID}', '${student.Name}', '${student.Department_Name}', '${student.Total_Credit}', '${student.Password}');`,
     function (err, result) {
       if (err) {
         res.json({
@@ -576,7 +587,7 @@ app.post('/add_course', function (req, res) {
     Credits: req.body.Credits
   };
 
-  connection.query(`INSERT INTO courses (ID, Title, Department_Name, Credits) VALUES ('${course.ID}', '${course.Title}', '${course.Department_Name}', '${course.Credits}');`,
+  connection.query(`INSERT INTO course (course_id, title, dept_name, credits) VALUES ('${course.ID}', '${course.Title}', '${course.Department_Name}', '${course.Credits}');`,
     function (err, result) {
       if (err) {
         res.json({
