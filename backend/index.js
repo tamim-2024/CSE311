@@ -29,14 +29,7 @@ connection.connect(
     }
   }
 );
-// const express = require('express');
-// const cors = require('cors');
 
-
-// app.use(cors());
-
-
-// GET API end point defination
 app.get('/', function (req, res) {
   const a = parseInt(req.query.a);
   const b = parseInt(req.query.b);
@@ -144,37 +137,7 @@ app.post('/course_count', (req, res) => {
     }
   });
 });
-// app.post('/user_check', function (req, res) {
 
-//   const username = req.body.username;
-//   const password = req.body.password;
-
-//   connection.query(`SELECT * FROM user WHERE id='${username}' `, function (err, result) {
-//     if (err) {
-//       res.json({
-//         error: err,
-//       });
-//     } else {
-//       if (result.length === 0) {
-//         res.json({
-//           error: "User not found",
-//         });
-//       } else {
-//         const user = result[0];
-//         if (user.password === password) {
-//           res.json({
-//             message: "Login successful",
-//             result: result
-//           });
-//         } else {
-//           res.json({
-//             error: "Incorrect password",
-//           });
-//         }
-//       }
-//     }
-//   });
-// });
 
 app.post('/user_check', function (req, res) {
 
@@ -182,7 +145,7 @@ app.post('/user_check', function (req, res) {
   const password = req.body.password;
   console.log(username,password);
 
-  connection.query(`SELECT * FROM user WHERE email='${username}' `, function (err, result) {
+  connection.query(`SELECT * FROM user WHERE user.email='${username}' `, function (err, result) {
     if (err) {
       res.json({
         error: err,
@@ -253,54 +216,54 @@ app.post('/teaches', function (req, res) {
   console.log(req.body);
   console.log(req.body.ID);
 
-  connection.query('SELECT teaches.*, teacher.name FROM teaches INNER JOIN teacher ON teaches.ID = teacher.ID WHERE teaches.ID = ?', [req.body.ID], function (err, result) {
-    console.log(result);
-    if (err) {
-      res.status(500).json({ error: err });
-    } else {
-      res.status(200).json({ result: result });
+  connection.query(
+    `SELECT teaches.*, teacher.name, course.title 
+     FROM teaches 
+     INNER JOIN teacher ON teaches.ID = teacher.ID 
+     INNER JOIN course ON teaches.course_id = course.course_id 
+     WHERE teaches.ID = ?`, 
+    [req.body.ID], 
+    function (err, result) {
+      console.log(result);
+      if (err) {
+        res.status(500).json({ error: err });
+      } else {
+        res.status(200).json({ result: result });
+      }
+      console.log(result);
     }
-    console.log(result);
-  });
+  );
 });
 
 app.post('/takes', function (req, res) {
   console.log(req.body);
   console.log(req.body.ID);
 
-  connection.query('SELECT takes.*, student.name FROM takes INNER JOIN student ON takes.ID = student.ID where student.ID =? ',[req.body.ID], function (err, result) {
-    console.log(result);
-    if (err) {
-      res.json({
-        error: err,
-      });
-    } else {
-      res.json({
-        result: result,
-      });
+  connection.query(
+    `SELECT takes.*, student.name, course.title 
+     FROM takes 
+     INNER JOIN student ON takes.ID = student.ID 
+     INNER JOIN course ON takes.course_id = course.course_id 
+     WHERE student.ID = ?`,
+    [req.body.ID], 
+    function (err, result) {
+      console.log(result);
+      if (err) {
+        res.json({
+          error: err,
+        });
+      } else {
+        res.json({
+          result: result,
+        });
+      }
+      console.log(result);
     }
-    console.log(result);
-  });
+  );
 });
 
-// app.post('/teacher-grades', function (req, res) {
-//   console.log(req.body);
-//   console.log(req.body.ID);
-//   connection.query(`SELECT * FROM takes ID='${req.body.ID}'`, function (err, result) {
-//     console.log(result);
-//     if (err) {
-//       res.json({
-//         error: err,
-//       })
-      
-//     } else {
-//       res.json({
-//         result: result,
-//       })
-//     }
-//     console.log(result);
-//   });
-// });
+
+
 app.post('/student_check', function (req, res) {
   const Username = req.body.Username;
   const Password = req.body.Password;
@@ -322,7 +285,7 @@ app.post('/student_check', function (req, res) {
         const studentId = student.id;
 
        
-        connection.query(`SELECT * FROM takes WHERE ID='${studentId}'`, function (takesErr, takesResult) {
+        connection.query(`SELECT * FROM takes WHERE takes.ID='${studentId}'`, function (takesErr, takesResult) {
           if (takesErr) {
             res.json({
               error: takesErr,
@@ -342,26 +305,7 @@ app.post('/student_check', function (req, res) {
 
 
 
-// POST API end point defination
-// app.post('/test-post', function (req, res) {
-//   console.log(req.body);
-//   connection.query(`select * from teacher`,
-//     function (err, result) {
-//       console.log(result);
-//       if (err) {
-//         res.json({
-//           error: err,
-//         })
-        
-//       } else {
-//         res.json({
-//           result: result,
-//         })
-//       }
-//       console.log(result);
-//     }
-//   );
-// });
+
 app.post('/test-post', function (req, res) {
   console.log(req.body);
   connection.query(`SELECT ID, name, dept_name, salary,join_date FROM teacher`,
@@ -479,30 +423,7 @@ app.post('/add_user', function (req, res) {
     }
   );
 })
-// app.post('/add_teacher', function (req, res) {
 
-//   const teacher = {
-//     ID: req.body.ID,
-//     Name: req.body.Name,
-//     No_of_Sections: req.body.No_of_Sections,
-//     Salary: req.body.Salary,
-//     Join_Date: req.body.Join_Date
-//   };
-
-//   connection.query(`INSERT INTO teacher (ID, Name, No_of_Sections, Salary, Join_Date) VALUES ('${teacher.ID}', '${teacher.Name}', '${teacher.No_of_Sections}', '${teacher.Salary}', '${teacher.Join_Date}');`,
-//     function (err, result) {
-//       if (err) {
-//         res.json({
-//           error: err,
-//         })
-//       } else {
-//         res.json({
-//           result: result,
-//         })
-//       }
-//     }
-//   );
-// })
 app.post('/add_teacher', function (req, res) {
 
   const teacher = {
@@ -529,29 +450,7 @@ app.post('/add_teacher', function (req, res) {
   );
 })
 
-// app.post('/add_student', function (req, res) {
 
-//   const student = {
-//     ID: req.body.ID,
-//     Name: req.body.Name,
-//     Department_Name: req.body.Department_Name,
-//     Total_Credit: req.body.Total_Credit
-//   };
-
-//   connection.query(`INSERT INTO student (ID, Name, Department_Name, Total_Credit) VALUES ('${student.ID}', '${student.Name}', '${student.Department_Name}', '${student.Total_Credit}');`,
-//     function (err, result) {
-//       if (err) {
-//         res.json({
-//           error: err,
-//         })
-//       } else {
-//         res.json({
-//           result: result,
-//         })
-//       }
-//     }
-//   );
-// })
 app.post('/add_student', function (req, res) {
 
   const student = {
@@ -602,5 +501,74 @@ app.post('/add_course', function (req, res) {
   );
 });
 
+app.post('/t_reset-password', function (req, res) {
+  const username = req.body.username;
+  const newPassword = req.body.newPassword;
+ console.log(username,newPassword);
+  
+  connection.query(
+    `UPDATE teacher SET teacher.password = '${newPassword}' WHERE teacher.ID = '${username}' ` ,
+    function (err, result) {
+      console.log(err,result)
+      if (err) {
+        res.json({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.json({
+          success: true,
+          result: result,
+        });
+      }
+    }
+  );
+});
 
+app.post('/s_reset-password', function (req, res) {
+  const username = req.body.username;
+  const newPassword = req.body.newPassword;
+ console.log(username,newPassword);
+  
+  connection.query(
+    `UPDATE student SET student.password = '${newPassword}' WHERE student.ID = '${username}' ` ,
+    function (err, result) {
+      console.log(err,result)
+      if (err) {
+        res.json({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.json({
+          success: true,
+          result: result,
+        });
+      }
+    }
+  );
+});
+app.post('/u_reset-password', function (req, res) {
+  const username = req.body.username;
+  const newPassword = req.body.newPassword;
+ console.log(username,newPassword);
+  
+  connection.query(
+    `UPDATE user SET user.password = '${newPassword}' WHERE user.email = '${username}' ` ,
+    function (err, result) {
+      console.log(err,result)
+      if (err) {
+        res.json({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.json({
+          success: true,
+          result: result,
+        });
+      }
+    }
+  );
+});
 app.listen(3000);

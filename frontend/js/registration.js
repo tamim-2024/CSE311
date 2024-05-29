@@ -153,5 +153,4 @@ function register() {
   });
 
   console.log(fname_text, last_name, gender, date, email, password, retype_password);
-  // window.location.replace("http://www.w3schools.com");
 }
