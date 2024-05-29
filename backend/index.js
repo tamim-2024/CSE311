@@ -271,7 +271,7 @@ app.post('/student_check', function (req, res) {
   const Username = req.body.Username;
   const Password = req.body.Password;
 
-  connection.query(`SELECT * FROM takes, student WHERE takes.ID=student.ID AND student.ID=${Username} AND student.Password='${Password}';`, function (err, result) {
+  connection.query(`SELECT * FROM  student WHERE  ID=${Username} AND Password='${Password}';`, function (err, result) {
     
     if (err) {
       res.json({
