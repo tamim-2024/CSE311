@@ -177,9 +177,12 @@ app.post('/user_check', function (req, res) {
 app.post('/teacher_check', function (req, res) {
   const Username = req.body.Username;
   const Password = req.body.Password;
+  console.log(Username,Password)
+  
 
-  connection.query(`SELECT * from teaches,teacher WHERE teaches.ID=teacher.ID and teacher.ID=${Username} and teacher.Password='${Password}';`, function (err, result) {
-    
+  connection.query(`SELECT * from teacher WHERE ID=${Username} and Password='${Password}';`, function (err, result) {
+    console.log("result",result);
+    console.log("err",err);
     if (err) {
       res.json({
         error: err,
@@ -416,9 +419,19 @@ app.post('/add_user', function (req, res) {
           error: err,
         })
       } else {
-        res.json({
-          result: result,
-        })
+        connection.query(`SELECT * FROM user WHERE email='${user.email}'`, function (err, result) {
+          if (err) {
+            res.json({ error: err });
+          } else {
+            if (result.length === 0) {
+              res.json({ error: "User not found" });
+            } else {
+              
+                res.json({ message: "Login successful", result: result, user: result[0] });
+              } 
+            
+          }
+        });
       }
     }
   );
