@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 08:11 PM
+-- Generation Time: May 30, 2024 at 09:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,8 @@ INSERT INTO `classroom` (`building`, `room_number`, `capacity`) VALUES
 ('Humanities Building', 'H201', 30),
 ('Life Sciences Building', 'L101', 70),
 ('Science Building', 'S201', 40),
-('Science Building', 'S301', 60);
+('Science Building', 'S301', 60),
+('Science Building', 'S401', NULL);
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,8 @@ INSERT INTO `section` (`course_id`, `sec_id`, `semester`, `year`, `building`, `r
 (5, 1, 'Spring', 2024, 'Life Sciences Building', 'L101', 5),
 (6, 1, 'Fall', 2024, 'Humanities Building', 'H201', 6),
 (7, 1, 'Spring', 2024, 'Business Building', 'B301', 7),
-(8, 1, 'Fall', 2024, 'Engineering Building', 'E401', 8);
+(8, 1, 'Fall', 2024, 'Engineering Building', 'E401', 8),
+(9, 1, 'Spring', 2024, 'Engineering Building', 'E101', 7);
 
 -- --------------------------------------------------------
 
@@ -149,8 +151,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`ID`, `name`, `dept_name`, `tot_credit`, `password`) VALUES
-(1, 'Alice Johnson', 'Computer Science', 45, '1234ab'),
-(2, 'Bob Smith', 'Mathematics', 60, '1234ab'),
+(1, 'Alice Johnson', 'Computer Science', 45, '123ab'),
+(2, 'Bob Smith', 'Mathematics', 60, '12345a'),
 (3, 'Charlie Brown', 'Physics', 30, '1234ab'),
 (4, 'Diana Prince', 'Biology', 75, '1234ab'),
 (5, 'Evan Taylor', 'History', 40, '1234ab'),
@@ -182,18 +184,25 @@ INSERT INTO `takes` (`ID`, `course_id`, `sec_id`, `semester`, `year`, `grade`) V
 (1, 1, 1, 'Spring', 2024, 'A'),
 (1, 2, 1, 'Fall', 2024, 'A'),
 (2, 2, 1, 'Fall', 2024, 'B'),
+(2, 3, 1, 'Spring', 2024, 'A'),
 (3, 2, 1, 'Fall', 2024, 'A'),
 (3, 3, 1, 'Spring', 2024, 'C'),
+(3, 4, 1, 'Fall', 2024, 'A'),
 (4, 2, 1, 'Fall', 2024, 'A'),
 (4, 4, 1, 'Fall', 2024, 'B'),
+(4, 5, 1, 'Spring', 2024, 'A'),
 (5, 2, 1, 'Fall', 2024, 'A'),
 (5, 5, 1, 'Spring', 2024, 'A'),
+(5, 6, 1, 'Fall', 2024, 'A'),
 (6, 2, 1, 'Fall', 2024, 'A'),
 (6, 6, 1, 'Fall', 2024, 'A'),
+(6, 7, 1, 'Spring', 2024, 'A'),
 (7, 2, 1, 'Fall', 2024, 'A'),
 (7, 7, 1, 'Spring', 2024, 'B'),
+(7, 8, 1, 'Fall', 2024, 'A'),
 (8, 2, 1, 'Fall', 2024, 'A'),
-(8, 8, 1, 'Fall', 2024, 'C');
+(8, 8, 1, 'Fall', 2024, 'C'),
+(8, 9, 1, 'Spring', 2024, 'A');
 
 -- --------------------------------------------------------
 
@@ -215,7 +224,7 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`ID`, `name`, `dept_name`, `salary`, `join_date`, `password`) VALUES
-(1, 'John Doe', 'Computer Science', 80000.00, '2001-12-29', '1234ab'),
+(1, 'John Doe', 'Computer Science', 80000.00, '2001-12-29', '1234abc'),
 (2, 'Jane Smith', 'Mathematics', 75000.00, '2001-12-12', '1234ab'),
 (3, 'Albert Johnson', 'Physics', 82000.00, '2024-05-09', '1234ab'),
 (4, 'Mary Williams', 'Chemistry', 78000.00, '2024-05-14', '1234ab'),
@@ -223,7 +232,8 @@ INSERT INTO `teacher` (`ID`, `name`, `dept_name`, `salary`, `join_date`, `passwo
 (6, 'Linda Davis', 'English', 70000.00, '2015-05-01', '1234ab'),
 (7, 'James Wilson', 'History', 72000.00, '2016-05-05', '1234ab'),
 (8, 'Barbara Moore', 'Economics', 83000.00, '2018-05-03', '1234ab'),
-(9, 'Tamim', 'Biology', 80000.00, '2024-05-17', '1234ab');
+(9, 'Tamim', 'Biology', 80000.00, '2024-05-17', '123ab'),
+(12, 'Labib', 'Biology', 80000.00, '2024-05-21', '1234ab');
 
 -- --------------------------------------------------------
 
@@ -276,10 +286,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `fname`, `lname`, `email`, `dob`, `gender`, `password`, `retype_password`) VALUES
 (1, 'John', 'Doe', 'john@example.com', '1990-01-01', 'Male', '1234ab', '1234ab'),
-(2, 'Jane', 'Smith', 'jane@example.com', '1992-05-15', 'Female', '1234ab', '1234ab'),
+(2, 'Jane', 'Smith', 'jane@example.com', '1992-05-15', 'Female', '123ab', '1234ab'),
 (3, 'Alice', 'Johnson', 'alice@example.com', '1988-09-30', 'Female', '1234ab', '1234ab'),
 (4, 'Bob', 'Williams', 'bob@example.com', '1995-03-20', 'Male', '1234ab', '1234ab'),
-(10, 'Tamim', 'Haque', 'tamim@gmail.com', '2024-05-31', 'Male', '1234ab', NULL);
+(10, 'Tamim', 'Haque', 'tamim@gmail.com', '2024-05-31', 'Male', '1234ab', NULL),
+(11, 'Tamim', 'Haque', 'ta@gmail.com', '2024-05-08', 'Male', '123abc', NULL);
 
 --
 -- Indexes for dumped tables
@@ -308,7 +319,8 @@ ALTER TABLE `department`
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
-  ADD PRIMARY KEY (`course_id`,`sec_id`,`semester`,`year`);
+  ADD PRIMARY KEY (`course_id`,`sec_id`,`semester`,`year`),
+  ADD KEY `building` (`building`,`room_number`);
 
 --
 -- Indexes for table `student`
@@ -359,13 +371,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -376,6 +388,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `course`
   ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`dept_name`) REFERENCES `department` (`dept_name`);
+
+--
+-- Constraints for table `section`
+--
+ALTER TABLE `section`
+  ADD CONSTRAINT `course_f` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`building`,`room_number`) REFERENCES `classroom` (`building`, `room_number`);
 
 --
 -- Constraints for table `student`

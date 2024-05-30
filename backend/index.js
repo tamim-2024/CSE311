@@ -520,7 +520,7 @@ app.post('/t_reset-password', function (req, res) {
  console.log(username,newPassword);
   
   connection.query(
-    `UPDATE teacher SET teacher.password = '${newPassword}' WHERE teacher.ID = '${username}' ` ,
+    `UPDATE teacher SET password = '${newPassword}' WHERE ID = '${username}' ` ,
     function (err, result) {
       console.log(err,result)
       if (err) {
@@ -544,7 +544,7 @@ app.post('/s_reset-password', function (req, res) {
  console.log(username,newPassword);
   
   connection.query(
-    `UPDATE student SET student.password = '${newPassword}' WHERE student.ID = '${username}' ` ,
+    `UPDATE student SET password = '${newPassword}' WHERE ID = '${username}' ` ,
     function (err, result) {
       console.log(err,result)
       if (err) {
